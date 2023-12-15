@@ -141,3 +141,15 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+emailjs.init("menigstar91@gmail.com");
+
+function sendEmail() {
+    const form = document.getElementById("contactForm");
+    emailjs.sendForm("default_service", "template_your_template_id", form)
+        .then(function(response) {
+            console.log("Email sent successfully", response);
+        }, function(error) {
+            console.log("Failed to send email. Error:", error);
+        });
+}
