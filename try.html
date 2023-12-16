@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Filter</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            background-color: black;
+            color: white;
+            border: 1px solid #333;
+            cursor: pointer;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .dropdown-btn {
+            cursor: pointer;
+        }
+
+        .down-arrow::before {
+            content: "▼";
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        .checkbox-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: black;
+            color: white;
+            display: none;
+            border: 1px solid #333;
+            border-top: none;
+            width: 100%;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .checkbox-option:hover {
+            background-color: #333;
+        }
+
+        .checkbox-option label {
+            margin-left: 8px;
+        }
+
+        .tag-item {
+            display: none;
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .tag-item p {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2 style="color: #333; text-align: center;">Tag Filter</h2>
+
+    <form>
+        <label for="tagFilter">Filter:</label>
+        <div class="custom-dropdown">
+            <button type="button" onclick="filterTags()">Filter</button>
+            <div class="down-arrow"  onclick="toggleDropdown()"></div>
+            <div class="checkbox-options" id="checkboxOptions">
+                <div class="checkbox-option">
+                    <input type="checkbox" id="python" value="python" >
+                    <label for="python">Python</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="javascript" value="javascript">
+                    <label for="javascript">JavaScript</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="html" value="html">
+                    <label for="html">HTML</label>
+                </div>
+                <div class="checkbox-option">
+                    <input type="checkbox" id="css" value="css">
+                    <label for="css">CSS</label>
+                </div>
+            </div>
+        </div>
+       
+    </form>
+
+    <div class="tag-item python javascript">
+        <!-- Content for items with Python and JavaScript tags -->
+        <p>Item with Python and JavaScript tags 1</p>
+        <p>Item with Python and JavaScript tags 2</p>
+    </div>
+
+    <div class="tag-item javascript html">
+        <!-- Content for items with JavaScript and HTML tags -->
+        <p>Item with JavaScript and HTML tags 1</p>
+        <p>Item with JavaScript and HTML tags 2</p>
+    </div>
+
+    <div class="tag-item html css">
+        <!-- Content for items with HTML and CSS tags -->
+        <p>Item with HTML and CSS tags 1</p>
+        <p>Item with HTML and CSS tags 2</p>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            const checkboxOptions = document.getElementById('checkboxOptions');
+            checkboxOptions.style.display = checkboxOptions.style.display === 'block' ? 'non' : 'block';
+        }
+
+        function filterTags() {
+            const checkboxOptions = document.querySelectorAll('input[type="checkbox"]:checked');
+            const selectedValues = [];
+
+            checkboxOptions.forEach(checkbox => {
+                selectedValues.push(checkbox.value);
+            });
+
+            const tagItems = document.querySelectorAll('.tag-item');
+
+            tagItems.forEach(item => {
+                const itemTags = item.className.split(' ').filter(className => className !== 'tag-item');
+                const isMatch = selectedValues.some(value => itemTags.includes(value));
+
+                if (isMatch) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -97,6 +97,10 @@ input, textarea {
     background: none;
     font: inherit;
 }
+
+input[type="checkbox"] {
+  width: auto;
+}
   
 ::selection {
     background: var(--orange-yellow-crayola);
@@ -793,7 +797,6 @@ main {
 
 .filter-select-box {
   position: relative;
-  margin-bottom: 25px;
 }
 
 .filter-select {
@@ -847,6 +850,7 @@ main {
 .select-item button:hover { --eerie-black-2: hsl(240, 2%, 20%); }
 
 .project-list {
+  position : relative;
   display: grid;
   grid-template-columns: 1fr;
   gap: 30px;
@@ -1392,7 +1396,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .filter-item button.active { color: var(--orange-yellow-crayola); }
 
-  .project-list, .blog-posts-list { grid-template-columns: 1fr 1fr; }
+  .project-list { position:relative; grid-template-columns: 1fr 1fr; }
 
   .input-wrapper { grid-template-columns: 1fr 1fr; }
 
@@ -1455,7 +1459,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .clients-item { min-width: calc(25% - 38px); }
 
-  .project-list { grid-template-columns: repeat(3, 1fr); }
+  .project-list { position : relative; grid-template-columns: repeat(3, 1fr); }
 
   .blog-banner-box { height: 230px; }
 
@@ -1555,4 +1559,52 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
+}
+
+.checkbox-options {
+  position: flex;
+  top: 100%;
+  left: 0;
+  background-color: black;
+  color: white;
+  display: none;
+  border: 1px solid #333;
+  border-top: none;
+  width: 100%;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.checkbox-option {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  box-sizing: border-box;
+  width: auto; 
+}
+
+.checkbox-option:hover {
+  background-color: #333;
+}
+
+.checkbox-option label {
+  margin-left: 8px;
+}
+
+.tag-item {
+  margin: 20px 0;
+  padding: 15px;
+  border: var(--eerie-black-1);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--smoky-black);
+}
+
+.tag-item p {
+  margin: 8px 0;
+}
+
+.project_detail {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.881);
 }

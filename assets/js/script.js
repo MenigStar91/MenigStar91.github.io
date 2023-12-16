@@ -53,7 +53,7 @@ overlay.addEventListener("click", testimonialsModalFunc);
 
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
+const selectValue = document.querySelector("[data-select-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
 select.addEventListener("click", function () { elementToggleFunc(this); });
@@ -152,4 +152,31 @@ function sendEmail() {
         }, function(error) {
             console.log("Failed to send email. Error:", error);
         });
+}
+
+function filterTags() {
+  const checkboxOptions = document.querySelectorAll('input[type="checkbox"]:checked');
+  const selectedValues = [];
+
+  checkboxOptions.forEach(checkbox => {
+      selectedValues.push(checkbox.value);
+  });
+
+  const tagItems = document.querySelectorAll('.tag-item');
+
+  tagItems.forEach(item => {
+      const itemTags = item.className.split(' ').filter(className => className !== 'tag-item');
+      const isMatch = selectedValues.some(value => itemTags.includes(value));
+
+      if (isMatch) {
+          item.style.display = 'block';
+      } else {
+          item.style.display = 'none';
+      }
+  });
+}
+
+function toggleDropdown() {
+  const checkboxOptions = document.getElementById('checkboxOptions');
+  checkboxOptions.style.display = checkboxOptions.style.display === 'none' ? 'block' : 'none';
 }
