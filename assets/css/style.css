@@ -1604,6 +1604,11 @@ textarea.form-input::-webkit-resizer { display: none; }
   margin: 8px 0;
 }
 
+.tag-item a{
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.881);
+}
+
 .project_detail {
   font-size: 10px;
   color: rgba(255, 255, 255, 0.881);
